@@ -292,6 +292,42 @@ const manipulations: Manipuluation[] = [
       return words.map((word) => word[0].toUpperCase() + word.slice(1)).join(" ");
     },
   },
+  {
+    key: "Hex(16) to Decimal(10)",
+    manipulation: (text: string): string | null => {
+      return parseInt(text, 16).toString(10);
+    },
+  },
+  {
+    key: "Hex(16) to Binary(2)",
+    manipulation: (text: string): string | null => {
+      return formatBinaryNumber(parseInt(text, 16).toString(2));
+    },
+  },
+  {
+    key: "Decimal(10) to Hex(16)",
+    manipulation: (text: string): string | null => {
+      return parseInt(text, 10).toString(16);
+    },
+  },
+  {
+    key: "Decimal(10) to Binary(2)",
+    manipulation: (text: string): string | null => {
+      return formatBinaryNumber(parseInt(text, 10).toString(2));
+    },
+  },
+  {
+    key: "Binary(2) to Hex(16)",
+    manipulation: (text: string): string | null => {
+      return parseInt(text.replaceAll(" ", ""), 2).toString(16);
+    },
+  },
+  {
+    key: "Binary(2) to Decimal(10)",
+    manipulation: (text: string): string | null => {
+      return parseInt(text.replaceAll(" ", ""), 2).toString(10);
+    },
+  },
 ];
 
 export function manipulateString(string: string): { key: string; value: string }[] {
@@ -306,4 +342,8 @@ export function manipulateString(string: string): { key: string; value: string }
 
     return { key: converter.key, value: value ?? "" };
   });
+}
+
+function formatBinaryNumber(text: string): string {
+  return [...new Array(text.length / 8)].map((_, i) => text.slice(i * 8, (i + 1) * 8)).join(" ");
 }
