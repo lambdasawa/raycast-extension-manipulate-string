@@ -46,6 +46,10 @@ export function getTimeDifference(a: number, b: number): string {
   const hours = Math.floor(duration / (1000 * 60 * 60)) % 24;
   const days = Math.floor(duration / (1000 * 60 * 60 * 24));
 
+  if ([seconds, minutes, hours, days].some((n) => Number.isNaN(n))) {
+    return "";
+  }
+
   let result = "";
 
   if (days > 0) {

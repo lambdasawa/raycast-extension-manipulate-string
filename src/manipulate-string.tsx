@@ -12,35 +12,49 @@ export default function Command() {
 
   return (
     <List isLoading={isLoading}>
-      {manipulateString(data).map(({ key, value }) => {
-        return (
-          <List.Item
-            key={key}
-            title={key}
-            subtitle={formatForSubtile(value)}
-            actions={
-              <ActionPanel>
-                <Action.Push
-                  title={key}
-                  target={
-                    <Detail
-                      markdown={formatMarkdown(value)}
-                      actions={
-                        <ActionPanel>
-                          <Action.CopyToClipboard content={value} />
-                          <Action.Paste shortcut={{ modifiers: ["cmd"], key: "enter" }} content={value} />
-                        </ActionPanel>
-                      }
-                    />
-                  }
-                />
-              </ActionPanel>
-            }
-          />
-        );
-      })}
+      {manipulateString(data)
+        .filter(({ value }) => filtering(value))
+        .map(({ key, value }) => {
+          return (
+            <List.Item
+              key={key}
+              title={key}
+              subtitle={formatForSubtile(value)}
+              actions={
+                <ActionPanel>
+                  <Action.Push
+                    title={key}
+                    target={
+                      <Detail
+                        markdown={formatMarkdown(value)}
+                        actions={
+                          <ActionPanel>
+                            <Action.CopyToClipboard content={value} />
+                            <Action.Paste shortcut={{ modifiers: ["cmd"], key: "enter" }} content={value} />
+                          </ActionPanel>
+                        }
+                      />
+                    }
+                  />
+                </ActionPanel>
+              }
+            />
+          );
+        })}
     </List>
   );
+}
+
+function filtering(text: string): boolean {
+  if (text.includes("�")) {
+    return false;
+  }
+
+  if (!text) {
+    return false;
+  }
+
+  return true;
 }
 
 function formatForSubtile(value: string): string {

@@ -295,37 +295,67 @@ const manipulations: Manipuluation[] = [
   {
     key: "Hex(16) to Decimal(10)",
     manipulation: (text: string): string | null => {
-      return parseInt(text, 16).toString(10);
+      const n = parseInt(text, 16);
+      if (Number.isNaN(n)) {
+        return "";
+      }
+
+      return n.toString(10);
     },
   },
   {
     key: "Hex(16) to Binary(2)",
     manipulation: (text: string): string | null => {
-      return formatBinaryNumber(parseInt(text, 16).toString(2));
+      const n = parseInt(text, 16);
+      if (Number.isNaN(n)) {
+        return "";
+      }
+
+      return formatBinaryNumber(n.toString(2));
     },
   },
   {
     key: "Decimal(10) to Hex(16)",
     manipulation: (text: string): string | null => {
-      return parseInt(text, 10).toString(16);
+      const n = parseInt(text, 10);
+      if (Number.isNaN(n)) {
+        return "";
+      }
+
+      return n.toString(16);
     },
   },
   {
     key: "Decimal(10) to Binary(2)",
     manipulation: (text: string): string | null => {
-      return formatBinaryNumber(parseInt(text, 10).toString(2));
+      const n = parseInt(text, 10);
+      if (Number.isNaN(n)) {
+        return "";
+      }
+
+      return formatBinaryNumber(n.toString(2));
     },
   },
   {
     key: "Binary(2) to Hex(16)",
     manipulation: (text: string): string | null => {
-      return parseInt(text.replaceAll(" ", ""), 2).toString(16);
+      const n = parseInt(text.replaceAll(" ", ""), 2);
+      if (Number.isNaN(n)) {
+        return "";
+      }
+
+      return n.toString(16);
     },
   },
   {
     key: "Binary(2) to Decimal(10)",
     manipulation: (text: string): string | null => {
-      return parseInt(text.replaceAll(" ", ""), 2).toString(10);
+      const n = parseInt(text.replaceAll(" ", ""), 2);
+      if (Number.isNaN(n)) {
+        return "";
+      }
+
+      return n.toString(10);
     },
   },
 ];
