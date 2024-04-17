@@ -141,6 +141,21 @@ const manipulations: Manipuluation[] = [
     },
   },
   {
+    key: "Convert JSON to form",
+    manipulation: (text: string): string | null => {
+      const json = JSON.parse(text);
+      return new URLSearchParams(json).toString();
+    },
+  },
+  {
+    key: "Convert form to JSON",
+    manipulation: (text: string): string | null => {
+      const params = new URLSearchParams(text);
+      const obj = Object.fromEntries(params.entries());
+      return JSON.stringify(obj, null, 2);
+    },
+  },
+  {
     key: "Extract JWT",
     manipulation: (text: string): string | null => {
       const regex = /(eyJ[a-zA-Z0-9_-]+?\.eyJ[a-zA-Z0-9_-]+?\.[a-zA-Z0-9_-]*)/g;
