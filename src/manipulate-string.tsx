@@ -22,15 +22,17 @@ export default function Command() {
               subtitle={formatForSubtile(value)}
               actions={
                 <ActionPanel>
+                  <Action.CopyToClipboard content={value} />
+                  <Action.Paste shortcut={{ modifiers: ["cmd"], key: "enter" }} content={value} />
                   <Action.Push
-                    title={key}
+                    shortcut={{ modifiers: ["ctrl"], key: "enter" }}
+                    title="Markdown"
                     target={
                       <Detail
                         markdown={formatMarkdown(value)}
                         actions={
                           <ActionPanel>
                             <Action.CopyToClipboard content={value} />
-                            <Action.Paste shortcut={{ modifiers: ["cmd"], key: "enter" }} content={value} />
                           </ActionPanel>
                         }
                       />
