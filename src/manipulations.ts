@@ -212,7 +212,7 @@ const manipulations: Manipuluation[] = [
     },
   },
   {
-    key: "Caulculate sha1",
+    key: "Calculate sha1",
     manipulation: (text: string): string | null => {
       const hash = crypto.createHash("sha1");
       hash.update(text);
