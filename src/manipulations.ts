@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import * as  qs from "qs";
 import * as htmlEntities from "html-entities";
 import { getTimeDifference, splitIntoWords } from "./utils";
 
@@ -150,14 +151,13 @@ const manipulations: Manipuluation[] = [
     key: "Convert JSON to form",
     manipulation: (text: string): string | null => {
       const json = JSON.parse(text);
-      return new URLSearchParams(json).toString();
+      return qs.stringify(json);
     },
   },
   {
     key: "Convert form to JSON",
     manipulation: (text: string): string | null => {
-      const params = new URLSearchParams(text);
-      const obj = Object.fromEntries(params.entries());
+      const obj = qs.parse(text);
       return JSON.stringify(obj, null, 2);
     },
   },
