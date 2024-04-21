@@ -136,9 +136,15 @@ const manipulations: Manipuluation[] = [
     },
   },
   {
-    key: "Format as JSON",
+    key: "Prettify JSON",
     manipulation: (text: string): string | null => {
       return JSON.stringify(JSON.parse(text), null, 2);
+    },
+  },
+  {
+    key: "Minify JSON",
+    manipulation: (text: string): string | null => {
+      return JSON.stringify(JSON.parse(text), null, 0);
     },
   },
   {
