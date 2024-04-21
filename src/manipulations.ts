@@ -135,7 +135,13 @@ const manipulations: Manipuluation[] = [
     },
   },
   {
-    key: "Escape JSON string",
+    key: "Format as JSON",
+    manipulation: (text: string): string | null => {
+      return JSON.stringify(JSON.parse(text), null, 2);
+    },
+  },
+  {
+    key: "Escape as JSON string",
     manipulation: (text: string): string | null => {
       return JSON.stringify(text);
     },
