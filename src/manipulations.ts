@@ -66,7 +66,7 @@ const manipulations: Manipuluation[] = [
   {
     key: "Parse URL",
     manipulation: (text: string): string | null => {
-      const url = new URL(text);
+      const url = new URL(text.trim());
 
       const searchParamKeys = [...url.searchParams.keys()];
 
@@ -94,14 +94,14 @@ const manipulations: Manipuluation[] = [
   {
     key: "Convert UNIX timestamp (sec) to ISO 8601",
     manipulation: (text: string): string | null => {
-      const timestamp = parseInt(text, 10);
+      const timestamp = parseInt(text.trim(), 10);
       return new Date(timestamp * 1000).toISOString();
     },
   },
   {
     key: "Convert ISO 8601 to UNIX timestamp (sec)",
     manipulation: (text: string): string | null => {
-      const date = new Date(text);
+      const date = new Date(text.trim());
       const time = date.getTime() / 1000;
       if (isNaN(time)) {
         return null;
@@ -112,14 +112,14 @@ const manipulations: Manipuluation[] = [
   {
     key: "Convert UNIX timestamp (ms) to ISO 8601",
     manipulation: (text: string): string | null => {
-      const timestamp = parseInt(text, 10);
+      const timestamp = parseInt(text.trim(), 10);
       return new Date(timestamp).toISOString();
     },
   },
   {
     key: "Convert ISO 8601 to UNIX timestamp (ms)",
     manipulation: (text: string): string | null => {
-      const date = new Date(text);
+      const date = new Date(text.trim());
       const time = date.getTime();
       if (isNaN(time)) {
         return null;
@@ -131,7 +131,7 @@ const manipulations: Manipuluation[] = [
     key: "Convert duration from now",
     manipulation: (text: string): string | null => {
       const now = new Date();
-      const date = new Date(text);
+      const date = new Date(text.trim());
       return getTimeDifference(now.getTime(), date.getTime());
     },
   },
@@ -156,14 +156,14 @@ const manipulations: Manipuluation[] = [
   {
     key: "Convert JSON to form",
     manipulation: (text: string): string | null => {
-      const json = JSON.parse(text);
+      const json = JSON.parse(text.trim());
       return qs.stringify(json);
     },
   },
   {
     key: "Convert form to JSON",
     manipulation: (text: string): string | null => {
-      const obj = qs.parse(text);
+      const obj = qs.parse(text.trim());
       return JSON.stringify(obj, null, 2);
     },
   },
@@ -322,7 +322,7 @@ const manipulations: Manipuluation[] = [
   {
     key: "Hex(16) to Decimal(10)",
     manipulation: (text: string): string | null => {
-      const n = parseInt(text, 16);
+      const n = parseInt(text.trim(), 16);
       if (Number.isNaN(n)) {
         return "";
       }
@@ -333,7 +333,7 @@ const manipulations: Manipuluation[] = [
   {
     key: "Hex(16) to Binary(2)",
     manipulation: (text: string): string | null => {
-      const n = parseInt(text, 16);
+      const n = parseInt(text.trim(), 16);
       if (Number.isNaN(n)) {
         return "";
       }
@@ -344,7 +344,7 @@ const manipulations: Manipuluation[] = [
   {
     key: "Decimal(10) to Hex(16)",
     manipulation: (text: string): string | null => {
-      const n = parseInt(text, 10);
+      const n = parseInt(text.trim(), 10);
       if (Number.isNaN(n)) {
         return "";
       }
@@ -355,7 +355,7 @@ const manipulations: Manipuluation[] = [
   {
     key: "Decimal(10) to Binary(2)",
     manipulation: (text: string): string | null => {
-      const n = parseInt(text, 10);
+      const n = parseInt(text.trim(), 10);
       if (Number.isNaN(n)) {
         return "";
       }
@@ -366,7 +366,7 @@ const manipulations: Manipuluation[] = [
   {
     key: "Binary(2) to Hex(16)",
     manipulation: (text: string): string | null => {
-      const n = parseInt(text.replaceAll(" ", ""), 2);
+      const n = parseInt(text.trim().replaceAll(" ", ""), 2);
       if (Number.isNaN(n)) {
         return "";
       }
@@ -377,7 +377,7 @@ const manipulations: Manipuluation[] = [
   {
     key: "Binary(2) to Decimal(10)",
     manipulation: (text: string): string | null => {
-      const n = parseInt(text.replaceAll(" ", ""), 2);
+      const n = parseInt(text.trim().replaceAll(" ", ""), 2);
       if (Number.isNaN(n)) {
         return "";
       }
