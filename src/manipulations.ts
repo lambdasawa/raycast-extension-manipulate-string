@@ -179,7 +179,7 @@ const manipulations: Manipuluation[] = [
     },
   },
   {
-    key: "Extract and decode JWT",
+    key: "Extract and Decode JWT",
     manipulation: (text: string): string | null => {
       const regex = /(eyJ[a-zA-Z0-9_-]+?\.eyJ[a-zA-Z0-9_-]+?\.[a-zA-Z0-9_-]*)/g;
 
