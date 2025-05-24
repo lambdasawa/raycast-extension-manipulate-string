@@ -320,6 +320,13 @@ const manipulations: Manipuluation[] = [
     },
   },
   {
+    key: "Generate fuzzy search regex",
+    manipulation: (text: string): string | null => {
+      const words = splitIntoWords(text.trim());
+      return words.join(".*");
+    },
+  },
+  {
     key: "Hex(16) to Decimal(10)",
     manipulation: (text: string): string | null => {
       const n = parseInt(text.trim(), 16);
