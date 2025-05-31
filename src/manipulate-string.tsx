@@ -19,7 +19,7 @@ export default function Command() {
             <List.Item
               key={key}
               title={key}
-              subtitle={formatForSubtile(value)}
+              subtitle={formatForSubtitle(value)}
               actions={
                 <ActionPanel>
                   <Action.CopyToClipboard content={value} />
@@ -59,7 +59,7 @@ function filtering(text: string): boolean {
   return true;
 }
 
-function formatForSubtile(value: string): string {
+function formatForSubtitle(value: string): string {
   return value.replaceAll(/\n+/g, " ");
 }
 

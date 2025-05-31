@@ -3,12 +3,12 @@ import * as qs from "qs";
 import * as htmlEntities from "html-entities";
 import { getTimeDifference, splitIntoWords } from "./utils";
 
-export type Manipuluation = {
+export type Manipulation = {
   key: string;
   manipulation: (text: string) => string | null;
 };
 
-const manipulations: Manipuluation[] = [
+const manipulations: Manipulation[] = [
   {
     key: "Raw",
     manipulation: (text: string): string | null => {
